@@ -1,0 +1,316 @@
+<!doctype html>
+<!-- See http://www.firepad.io/docs/ for detailed embedding docs. -->
+<html ng-app>
+<head>
+  <meta charset="utf-8" />
+  <!-- Include Firebase -->
+  <script src="https://cdn.firebase.com/js/client/1.0.17/firebase.js"></script>
+
+  <!-- Include ACE and its JavaScript mode and theme files -->
+  <script src="ace/ace.js"></script>
+  <script src="ace/mode-javascript.js"></script>
+  <script src="ace/theme-textmate.js"></script>
+
+
+  <!-- // <script src="markdown-converter.js"></script> -->
+  <script src="markdown-parser.js"></script>
+  <link href="http://srvpesquisa/docsmd/Scripts/google-code-prettify/prettify.css" rel="stylesheet" />
+
+
+
+  <link href="http://srvpesquisa/docsmd/Content/bootstrap.css" rel="stylesheet"/>
+  <link href="http://srvpesquisa/docsmd/Content/bootstrap-theme.css" rel="stylesheet"/>
+
+
+  <!-- Include Firepad -->
+  <script src="firepad.js"></script>
+  <link rel="stylesheet" href="firepad.css" />
+
+  <script src="example-helper.js"></script>
+
+    <!-- Include example userlist. -->
+  <script src="firepad-userlist.js"></script>
+  <link rel="stylesheet" href="firepad-userlist.css" />
+
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
+
+
+
+  <style>
+    html { height: 100%; }
+    body { margin: 0; height: 100%; position: relative; }
+
+    .live-editor.preview-only {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      overflow: auto;
+      height: auto;
+    }
+    .preview-only #userlist {
+      display: none;
+    }
+    .preview-only #md-preview {
+      float: none;
+      margin: auto; 
+      z-index: 90000;
+      width: 100%;
+      height: 100%;
+      background-color: white;
+      padding: 40px;
+      max-width: 800px;
+      border:none;
+      overflow: none;
+    }
+
+
+    .preview-only .firepad {
+      display: none;
+    }
+
+    /* Height / width / positioning can be customized for your use case.
+       For demo purposes, we make firepad fill the entire browser. */
+    .firepad {
+      width: 50%;
+      float: left;
+    }
+  
+
+    #firepad-container {
+      width: 100%;
+      height: 100%;
+    }
+
+    #md-preview{
+      width: 49%;
+      height: 100%;
+      float: right;
+      border-left: 1px solid black;
+      overflow: auto;
+      padding: 10px;
+      z-index: 5;
+    }
+    .live-editor{
+      width: 100%;
+      height: 100%;
+    }
+
+  #splash{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+    background-color: white;
+    opacity: 0.75;
+  }
+  .contener_loader_19{
+    position: absolute;
+    margin-left: 50%;
+    left: -50px;
+    margin-top: -50px;
+    top: 50%;
+  }
+
+  </style>
+  <style type="text/css">.contener_loader_19{width:100px;height:100px} .rond_max_19{width:100px;height:100px;background-image:url(img/cube_3d_big1406731677.png);background-position:center;background-repeat:no-repeat;-webkit-animation:anim_max 1.4s infinite linear;-moz-animation:anim_max 1.4s infinite linear;-ms-animation:anim_max 1.4s infinite linear;-o-animation:anim_max 1.4s infinite linear;animation:anim_max 1.4s infinite linear} .rond_min_19{width:100px;height:100px;background-image:url(img/cube_3d_mini1406731677.png);background-position:center;background-repeat:no-repeat;-webkit-animation:anim_min 1.4s infinite linear;-moz-animation:anim_min 1.4s infinite linear;-ms-animation:anim_min 1.4s infinite linear;-o-animation:anim_min 1.4s infinite linear;animation:anim_min 1.4s infinite linear} @-webkit-keyframes anim_max{0%{-webkit-transform:rotate(0deg);-moz-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg)} 100%{-webkit-transform:rotate(360deg);-moz-transform:rotate(360deg);-ms-transform:rotate(360deg);transform:rotate(360deg)}} @-webkit-keyframes anim_min{0%{-webkit-transform:rotate(0deg);-moz-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg)} 100%{-webkit-transform:rotate(-720deg);-moz-transform:rotate(-720deg);-ms-transform:rotate(-720deg);transform:rotate(-720deg)}} @-moz-keyframes anim_max{0%{-webkit-transform:rotate(0deg);-moz-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg)} 100%{-webkit-transform:rotate(360deg);-moz-transform:rotate(360deg);-ms-transform:rotate(360deg);transform:rotate(360deg)}} @-moz-keyframes anim_min{0%{-webkit-transform:rotate(0deg);-moz-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg)} 100%{-webkit-transform:rotate(-720deg);-moz-transform:rotate(-720deg);-ms-transform:rotate(-720deg);transform:rotate(-720deg)}} @-ms-keyframes anim_max{0%{-webkit-transform:rotate(0deg);-moz-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg)} 100%{-webkit-transform:rotate(360deg);-moz-transform:rotate(360deg);-ms-transform:rotate(360deg);transform:rotate(360deg)}} @-ms-keyframes anim_min{0%{-webkit-transform:rotate(0deg);-moz-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg)} 100%{-webkit-transform:rotate(-720deg);-moz-transform:rotate(-720deg);-ms-transform:rotate(-720deg);transform:rotate(-720deg)}} @keyframes anim_max{0%{-webkit-transform:rotate(0deg);-moz-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg)} 100%{-webkit-transform:rotate(360deg);-moz-transform:rotate(360deg);-ms-transform:rotate(360deg);transform:rotate(360deg)}} @keyframes anim_min{0%{-webkit-transform:rotate(0deg);-moz-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg)} 100%{-webkit-transform:rotate(-720deg);-moz-transform:rotate(-720deg);-ms-transform:rotate(-720deg);transform:rotate(-720deg)}}</style>
+
+  <style>
+
+  /*Prettyprint*/
+  li.L0, li.L1, li.L2, li.L3, li.L5, li.L6, li.L7, li.L8 {
+    list-style-type: decimal !important;
+  }
+
+  /* Docs page*/
+
+  #md-preview img {
+    display: block;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100%;
+  }
+
+  #md-preview p {
+    text-align: justify;
+  }
+
+  #md-preview code {
+    white-space: normal;
+}
+
+
+.atoc {
+    -webkit-transition: background-color ease-in-out .15s, color ease-in-out .15s, border-color ease-in-out .15s;
+    transition: background-color ease-in-out .15s, color ease-in-out .15s, border-color ease-in-out .15s;
+    color: rgba(102,128,153,0.15);
+    text-decoration: none;
+}
+
+.atoc:hover {
+  color: #008cba !important;
+  text-decoration: none;
+}
+
+.atoc:hover, .atoc:focus {
+  text-decoration: none;
+}
+
+.plugins {
+  position: absolute;
+  top: 0;
+  right: 20px;
+  margin: 5px;
+  z-index: 50;
+}
+
+  </style>
+</head>
+
+<body>
+  <div id="splash">
+    <div class="contener_loader_19"><div class="rond_max_19"><div class="rond_min_19"></div></div></div>
+  </div>
+ 
+  <div class="live-editor">
+    <div id="userlist"></div>
+    <div id="firepad-container"></div>
+    <div id="md-preview"></div>
+    <div class="plugins">
+      <button id="btnSlides">Slides</button>
+      <button id="btnPreview">Preview</button>
+    </div>
+  </div>
+  <script type="text/javascript" src="tocmaker.js"></script>
+  <!-- // <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular.min.js"></script> -->
+  <script>
+
+
+
+    window.onload = function() {
+      var btnPreview = document.getElementById('btnPreview');
+      btnPreview.onclick = function() {
+        if (window.location.search.indexOf('&preview=true') == -1) {
+          window.location.search += '&preview=true';
+        }else{
+          window.location.search = window.location.search.replace(/&preview=true/,"");
+        }
+      };
+
+
+
+      //// Initialize Firebase.
+      var firepadRef = getDocumentRef();
+
+      var preview = !!getParameterByName('preview');
+      if (preview) {
+        var mdPreview = document.getElementsByClassName('live-editor')[0];
+        var cls = mdPreview.className;
+        mdPreview.className = cls + " preview-only";
+      };
+
+      //// Create ACE
+      var editor = ace.edit("firepad-container");
+      editor.setTheme("ace/theme/textmate");
+
+
+      // Create a random ID to use as our user ID (we must give this to firepad and FirepadUserList).
+      var userId = Math.floor(Math.random() * 9999999999).toString();
+
+
+      var session = editor.getSession();
+      session.setUseWrapMode(true);
+      session.setUseWorker(false);
+      session.setMode("ace/mode/markdown");
+      document.getElementById('firepad-container').style.fontSize='16px';
+      //// Create Firepad.
+      var firepad = Firepad.fromACE(firepadRef, editor, {
+        userId: userId
+      });
+
+      //// Create FirepadUserList (with our desired userId).
+      var firepadUserList = FirepadUserList.fromDiv(firepadRef.child('users'),
+        document.getElementById('userlist'), userId);
+
+      var updateMarkdown = function() {
+        var mdText = '\n[TOC]\n' + firepad.getText();
+        var md = document.getElementById('md-preview');
+        //var converter = new Markdown.Converter();
+        //md.innerHTML = converter.makeHtml(mdText);
+        md.innerHTML = marked(mdText);
+
+        // Prettify
+        var codeEls = document.getElementsByTagName('code');
+        for (var i=0, ii=codeEls.length; i<ii; i++) {
+          var codeEl = codeEls[i];
+          var lang = codeEl.className;
+          codeEl.className = 'prettyprint lang-' + lang;
+        }
+        prettyPrint();
+
+        // Style tables
+        var tableEls = document.getElementsByTagName('table');
+        for (var i=0, ii=tableEls.length; i<ii; i++) {
+          var tableEl = tableEls[i];
+          tableEl.className = 'table table-striped table-bordered';
+        }
+
+        TocMaker.init('md-preview'/*,"http://localhost/md-preview/"*/); //TOC MAKER
+
+      };
+
+
+        var initSlidesPlugin = function(firepad) {
+          var btnSlides = document.getElementById('btnSlides');
+          btnSlides.onclick = function() {
+            var win = window.open('revealTpl.html', 'JanelaImpressao', 'location=no,scrollbars=yes,height=600,width=800,titlebar=true,menubar=true');
+            win.doSomething = function() {
+
+              var text = firepad.getText();
+
+              var slidesTxt = text.split(/---+|\*\*\*+|#+/);
+              var slides = [];
+
+              for (var i = 0; i < slidesTxt.length; i++) {
+                if (slidesTxt[i].trim() != '') {
+                  var slide = '<section data-markdown><script type="text/template">#' + slidesTxt[i] + '\</script\>\</section\>';
+                  slides.push(slide);
+                };
+              };
+
+              var slideRegion = win.document.getElementById('slides-region');
+              slideRegion.innerHTML = slides.join('');
+              win.initReveal();
+            };
+            win.addEventListener('load', win.doSomething, true);
+          };
+        };
+
+
+      //// Initialize contents.
+      firepad.on('ready', function() {
+        editor.on("change", function() {
+          updateMarkdown();
+        });
+
+        if (firepad.isHistoryEmpty()) {
+          firepad.setText('# Markdown Here');
+        } else {
+          updateMarkdown();
+        }
+        editor.resize();
+        setTimeout(function() {
+          var splash = document.getElementById('splash');
+          splash.remove();
+        }, 1000);
+
+        initSlidesPlugin(firepad);
+      });
+    };
+  </script>
+</body>
+</html>
