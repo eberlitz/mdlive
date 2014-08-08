@@ -41,42 +41,7 @@
 		<div class="reveal">
 
 			<!-- Any section element inside of this container is displayed as a slide -->
-			<div id="slides-region" class="slides">
-				
-
-				
-
-				
-
- <section data-markdown>
-<script type="text/template">
-# Arquitetura
-
-A arquitetura da solução GVmobile é composta de camadas e comunicação.
-
-</script>
-</section>
-		
-
-<section data-markdown>
-<script type="text/template">
-## Camadas
-
-As 3 camadas utilizadas na aplicação são as seguintes:
-</script>
-</section>
-
-<section data-markdown>
-<script type="text/template">
-### Aplicação mobile
-
-Este é o aplicativo em si, o qual estára disponível nas  `iOS`, `Android` e `Windows Phone`. Contém toda a lógica de apresentação das funcionalidades e consome os dados da **WebAPI** presente no ambiente do cliente, o qual de fato irá consultar a base do *GVcollege*.
-</script>
-</section>	
-
-				
-
-			</div>
+			<div id="slides-region" class="slides"></div>
 
 		</div>
 
@@ -138,8 +103,10 @@ Este é o aplicativo em si, o qual estára disponível nas  `iOS`, `Android` e `
 					}]
 				});
 			};
-
+          	var slideRegion = window.document.getElementById('slides-region');
+          	if (slideRegion && slideRegion.innerHTML != '') {
+          		initReveal();
+          	};
 		</script>
-
 	</body>
 </html>
