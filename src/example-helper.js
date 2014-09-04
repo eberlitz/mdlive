@@ -1,7 +1,56 @@
+function Firebase(url){
+  var me = this;
+  me.rootUrl = url;
+  me.url = url;
+  me.child = function(url){
+    return new Firebase(me.url + "/"+ url);
+  };
+
+  me.push = function(){
+    return new Firebase(me.url + "/asjdfha");
+  }
+
+  me.name = function(){
+    return "a";
+  }
+
+  me.set = function(obj){
+
+  }
+
+  me.root = function(){
+    return new Firebase(me.rootUrl);
+  }
+
+  me.on = function(eventType, callback, context){
+    console.log(eventType);
+    // value
+    // child_added
+    // child_changed
+    // child_moved
+    // child_removed
+  }
+
+  me.once = function(eventType, callback){
+    console.log(eventType);
+  }
+
+  me.onDisconnect = function(){
+    this.remove = function(){
+
+    } 
+    return this;
+  }
+
+};
+
+
+
 function getDocumentRef() {
   // Get hash from end of URL or generate a random one.
 
-  var ref = new Firebase('https://mdlive.firebaseio.com/');
+  //var ref = new Firebase('https://blistering-fire-4747.firebaseio.com/');
+  var ref = new Firebase('http://localhost:3000/');
   //var hash = window.location.hash.replace(/#/g, '');
   var hash = getParameterByName('d');
   if (hash) {
