@@ -1,40 +1,28 @@
 <!doctype html>
-<!-- See http://www.firepad.io/docs/ for detailed embedding docs. -->
+
 <html ng-app>
 <head>
   <meta charset="utf-8" />
-  <!-- Include Firebase -->
   <script src="https://cdn.firebase.com/js/client/1.0.17/firebase.js"></script>
 
-  <!-- Include ACE and its JavaScript mode and theme files -->
   <script src="ace/ace.js"></script>
   <script src="ace/mode-javascript.js"></script>
   <script src="ace/theme-textmate.js"></script>
 
+  <script src="markdown/markdown-parser.js"></script>
+  <link href="//cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css" rel="stylesheet" />
 
-  <!-- // <script src="markdown-converter.js"></script> -->
-  <script src="markdown-parser.js"></script>
-  <link href="http://srvpesquisa/docsmd/Scripts/google-code-prettify/prettify.css" rel="stylesheet" />
+  <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/css/bootstrap-theme.min.css" rel="stylesheet"/>
 
+  <script src="firepad/firepad.js"></script>
+  <link href="firepad/firepad.css" rel="stylesheet" />
+  <script src="firebase/firebase.js"></script>
 
+  <script src="firepad/firepad-userlist.js"></script>
+  <link href="firepad/firepad-userlist.css" rel="stylesheet" />
 
-  <link href="http://srvpesquisa/docsmd/Content/bootstrap.css" rel="stylesheet"/>
-  <link href="http://srvpesquisa/docsmd/Content/bootstrap-theme.css" rel="stylesheet"/>
-
-
-  <!-- Include Firepad -->
-  <script src="firepad.js"></script>
-  <link rel="stylesheet" href="firepad.css" />
-
-  <script src="example-helper.js"></script>
-
-    <!-- Include example userlist. -->
-  <script src="firepad-userlist.js"></script>
-  <link rel="stylesheet" href="firepad-userlist.css" />
-
-    <link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
-
-
+  <link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
 
   <style>
     html { height: 100%; }
@@ -63,7 +51,6 @@
       border:none;
       overflow: none;
     }
-
 
     .preview-only .firepad {
       display: none;
@@ -96,23 +83,23 @@
       height: 100%;
     }
 
-  #splash{
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 10;
-    background-color: white;
-    opacity: 0.75;
-  }
-  .contener_loader_19{
-    position: absolute;
-    margin-left: 50%;
-    left: -50px;
-    margin-top: -50px;
-    top: 50%;
-  }
+    #splash{
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 10;
+      background-color: white;
+      opacity: 0.75;
+    }
+    .contener_loader_19{
+      position: absolute;
+      margin-left: 50%;
+      left: -50px;
+      margin-top: -50px;
+      top: 50%;
+    }
 
   </style>
   <style type="text/css">.contener_loader_19{width:100px;height:100px} .rond_max_19{width:100px;height:100px;background-image:url(img/cube_3d_big1406731677.png);background-position:center;background-repeat:no-repeat;-webkit-animation:anim_max 1.4s infinite linear;-moz-animation:anim_max 1.4s infinite linear;-ms-animation:anim_max 1.4s infinite linear;-o-animation:anim_max 1.4s infinite linear;animation:anim_max 1.4s infinite linear} .rond_min_19{width:100px;height:100px;background-image:url(img/cube_3d_mini1406731677.png);background-position:center;background-repeat:no-repeat;-webkit-animation:anim_min 1.4s infinite linear;-moz-animation:anim_min 1.4s infinite linear;-ms-animation:anim_min 1.4s infinite linear;-o-animation:anim_min 1.4s infinite linear;animation:anim_min 1.4s infinite linear} @-webkit-keyframes anim_max{0%{-webkit-transform:rotate(0deg);-moz-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg)} 100%{-webkit-transform:rotate(360deg);-moz-transform:rotate(360deg);-ms-transform:rotate(360deg);transform:rotate(360deg)}} @-webkit-keyframes anim_min{0%{-webkit-transform:rotate(0deg);-moz-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg)} 100%{-webkit-transform:rotate(-720deg);-moz-transform:rotate(-720deg);-ms-transform:rotate(-720deg);transform:rotate(-720deg)}} @-moz-keyframes anim_max{0%{-webkit-transform:rotate(0deg);-moz-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg)} 100%{-webkit-transform:rotate(360deg);-moz-transform:rotate(360deg);-ms-transform:rotate(360deg);transform:rotate(360deg)}} @-moz-keyframes anim_min{0%{-webkit-transform:rotate(0deg);-moz-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg)} 100%{-webkit-transform:rotate(-720deg);-moz-transform:rotate(-720deg);-ms-transform:rotate(-720deg);transform:rotate(-720deg)}} @-ms-keyframes anim_max{0%{-webkit-transform:rotate(0deg);-moz-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg)} 100%{-webkit-transform:rotate(360deg);-moz-transform:rotate(360deg);-ms-transform:rotate(360deg);transform:rotate(360deg)}} @-ms-keyframes anim_min{0%{-webkit-transform:rotate(0deg);-moz-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg)} 100%{-webkit-transform:rotate(-720deg);-moz-transform:rotate(-720deg);-ms-transform:rotate(-720deg);transform:rotate(-720deg)}} @keyframes anim_max{0%{-webkit-transform:rotate(0deg);-moz-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg)} 100%{-webkit-transform:rotate(360deg);-moz-transform:rotate(360deg);-ms-transform:rotate(360deg);transform:rotate(360deg)}} @keyframes anim_min{0%{-webkit-transform:rotate(0deg);-moz-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg)} 100%{-webkit-transform:rotate(-720deg);-moz-transform:rotate(-720deg);-ms-transform:rotate(-720deg);transform:rotate(-720deg)}}</style>
@@ -185,7 +172,7 @@
       <button id="btnPreview">Preview</button>
     </div>
   </div>
-  <script type="text/javascript" src="tocmaker.js"></script>
+  <script type="text/javascript" src="markdown/tocmaker.js"></script>
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular.min.js"></script>
   <script>
 
@@ -278,7 +265,7 @@
 
 
       var showSlides = function(firepad, toPrint) {
-        var win = window.open('revealTpl.html' + (!!toPrint?'?print-pdf':''), '_blank', 'location=no,scrollbars=yes,height=600,width=800,titlebar=true,menubar=true');
+        var win = window.open('slideshow.html' + (!!toPrint?'?print-pdf':''), '_blank', 'location=no,scrollbars=yes,height=600,width=800,titlebar=true,menubar=true');
           
         win.focus();
         win.doSomething = function() {
@@ -330,7 +317,7 @@
 
         if (!!getParameterByName('slides')) {
           var $http = angular.element(window.document.getElementsByTagName('HTML')[0]).injector().get('$http');
-          $http.get('revealTpl.html')
+          $http.get('slideshow.html')
           .then(function(response){
             var revealTpl = response.data;
             var slides = markdownToRevealSlides(firepad.getText());

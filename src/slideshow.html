@@ -14,11 +14,11 @@
 
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<link rel="stylesheet" href="css/reveal.min.css">
-		<link rel="stylesheet" href="css/theme/default.css" id="theme">
+		<link rel="stylesheet" href="reveal/reveal.min.css">
+		<link rel="stylesheet" href="reveal/theme/default.css" id="theme">
 
 		<!-- For syntax highlighting -->
-		<link rel="stylesheet" href="lib/css/zenburn.css">
+		<link rel="stylesheet" href="reveal/zenburn.css">
 
 		<!-- If the query includes 'print-pdf', include the PDF print sheet -->
 		<script>
@@ -45,8 +45,8 @@
 
 		</div>
 
-		<script src="lib/js/head.min.js"></script>
-		<script src="js/reveal.min.js"></script>
+		<script src="reveal/head.min.js"></script>
+		<script src="reveal/reveal.min.js"></script>
 
 		<script>
 
@@ -68,34 +68,34 @@
 
 					// Optional libraries used to extend on reveal.js
 					dependencies: [{
-						src: 'lib/js/classList.js',
+						src: 'reveal/plugin/list/classList.js',
 						condition: function() {
 							return !document.body.classList;
 						}
 					}, {
-						src: 'plugin/markdown/marked.js',
+						src: 'reveal/plugin/markdown/marked.js',
 						condition: function() {
 							return !!document.querySelector('[data-markdown]');
 						}
 					}, {
-						src: 'plugin/markdown/markdown.js',
+						src: 'reveal/plugin/markdown/markdown.js',
 						condition: function() {
 							return !!document.querySelector('[data-markdown]');
 						}
 					}, {
-						src: 'plugin/highlight/highlight.js',
+						src: 'reveal/plugin/highlight/highlight.js',
 						async: true,
 						callback: function() {
 							hljs.initHighlightingOnLoad();
 						}
 					}, {
-						src: 'plugin/zoom-js/zoom.js',
+						src: 'reveal/plugin/zoom-js/zoom.js',
 						async: true,
 						condition: function() {
 							return !!document.body.classList;
 						}
 					}, {
-						src: 'plugin/notes/notes.js',
+						src: 'reveal/plugin/notes/notes.js',
 						async: true,
 						condition: function() {
 							return !!document.body.classList;
