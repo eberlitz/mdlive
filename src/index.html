@@ -12,8 +12,20 @@
   <script src="markdown/markdown-parser.js"></script>
   <link href="//cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css" rel="stylesheet" />
 
+<<<<<<< HEAD
   <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet"/>
   <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/css/bootstrap-theme.min.css" rel="stylesheet"/>
+=======
+  <!-- // <script src="markdown-converter.js"></script> -->
+  <script src="markdown-parser.js"></script>
+  <link href="google-code-prettify/prettify.css" rel="stylesheet" />
+
+
+
+  <link href="css/bootstrap.css" rel="stylesheet"/>
+  <link href="css/bootstrap-theme.css" rel="stylesheet"/>
+
+>>>>>>> aae8ef24dd1ddeb837dbfa96d4fef7b96d2e913a
 
   <script src="firepad/firepad.js"></script>
   <link href="firepad/firepad.css" rel="stylesheet" />
@@ -127,7 +139,7 @@
   }
 
   #md-preview code {
-    white-space: normal;
+    white-space: pre-wrap;
 }
 
 
@@ -176,9 +188,41 @@
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular.min.js"></script>
   <script>
 
+    function syncScroll() {
+      var srl = document.getElementsByClassName('ace_scrollbar')[0];
+      var preview = document.getElementById('md-preview');
 
+      function onScrollEventHandler(ev) {
+        //http://dev.w3.org/2006/webapi/DOM-Level-3-Events/html/DOM3-Events.html#event-type-scroll
+        // var perc = srl.scrollTop * 100 / srl.scrollHeight;
+        // preview.scrollTop = preview.scrollHeight * perc / 100;
+        preview.scrollTop = ((preview.scrollHeight-preview.clientHeight)*srl.scrollTop)/(srl.scrollHeight-srl.clientHeight);
+      }
+      if (srl.addEventListener)
+        srl.addEventListener('scroll', onScrollEventHandler, false);
+      else if (srl.attachEvent)
+        srl.attachEvent('onscroll', onScrollEventHandler);
+    }
 
     window.onload = function() {
+
+      
+
+
+      marked.setOptions({
+      renderer: new marked.Renderer(),
+        gfm: true,
+        tables: true,
+        breaks: false,
+        pedantic: false,
+        sanitize: true,
+        smartLists: true,
+        smartypants: false
+      });
+
+
+
+
       var btnPreview = document.getElementById('btnPreview');
       btnPreview.onclick = function() {
         if (window.location.search.indexOf('&preview=true') == -1) {
@@ -228,16 +272,23 @@
         var md = document.getElementById('md-preview');
         //var converter = new Markdown.Converter();
         //md.innerHTML = converter.makeHtml(mdText);
+
+        // Synchronous highlighting with highlight.js
+        marked.setOptions({
+          highlight: function (code, lang, callback) {
+            return prettyPrintOne(code,lang,1);
+          }
+        });
         md.innerHTML = marked(mdText);
 
         // Prettify
-        var codeEls = document.getElementsByTagName('code');
-        for (var i=0, ii=codeEls.length; i<ii; i++) {
-          var codeEl = codeEls[i];
-          var lang = codeEl.className;
-          codeEl.className = 'prettyprint lang-' + lang;
-        }
-        prettyPrint();
+        // var codeEls = document.getElementsByTagName('code');
+        // for (var i=0, ii=codeEls.length; i<ii; i++) {
+        //   var codeEl = codeEls[i];
+        //   var lang = codeEl.className;
+        //   codeEl.className = 'prettyprint lang-' + lang;
+        // }
+        //prettyPrint();
 
         // Style tables
         var tableEls = document.getElementsByTagName('table');
@@ -294,6 +345,8 @@
 
       //// Initialize contents.
       firepad.on('ready', function() {
+        syncScroll();
+
         editor.on("change", function() {
           updateMarkdown();
         });
