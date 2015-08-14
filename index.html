@@ -1,10 +1,48 @@
 <!DOCTYPE html>
 <html>
+
+<head>
+	<meta charset="utf-8" />
+	<title>mdlive</title>
+
+	<!-- Firebase -->
+	<script src="bower_components/firebase/firebase.js"></script>
+	<!-- ACE -->
+	<script src="ace/ace.js"></script>
+	<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.1.3/ace.js"></script>-->
+
+	<script src="bower_components/marked/lib/marked.js"></script>
+	<link href="bower_components/google-code-prettify/bin/prettify.min.css" rel="stylesheet" />
+
+	<!-- Firepad -->
+	<link rel="stylesheet" href="bower_components/firepad/dist/firepad.css" />
+	<script src="bower_components/firepad/dist/firepad.min.js"></script>
+
+
+	<link rel="stylesheet" href="mdlive.css" />
+
+</head>
+
 <body>
-
-<h1>Cooperative Markdown Editor</h1>
-
-
+	<div id="splash">
+		<div class="contener_loader_19">
+			<div class="rond_max_19">
+				<div class="rond_min_19"></div>
+			</div>
+		</div>
+	</div>
+	<div class="live-editor">
+		<div id="userlist"></div>
+		<div id="firepad-container"></div>
+		<div id="md-preview"></div>
+		<div class="plugins">
+			<!--<button id="btnSlides">Slides</button>-->
+			<button id="btnPreview">Preview</button>
+		</div>
+	</div>
+	<script type="text/javascript" src="tocmaker.js"></script>
+	<script src="mdlive.js"></script>
 
 </body>
+
 </html>

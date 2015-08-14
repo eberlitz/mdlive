@@ -1,0 +1,23 @@
+{
+  "name": "mdlive",
+  "version": "1.0.0",
+  "homepage": "https://github.com/eberlitz/mdlive",
+  "authors": [
+    "Eduardo Eidelwein Berlitz <eberlitz@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "codemirror": "~5.5.0",
+    "firebase": "~2.2.9",
+    "firepad": "~1.1.1",
+    "marked": "~0.3.5",
+    "google-code-prettify": "~1.0.4"
+  }
+}
