@@ -1,4 +1,84 @@
-html {
+html,body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.layout-fill {
+    margin: 0;
+    width: 100%;
+    min-height: 100%;
+    height: 100%;
+}
+
+.layout-row {
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+}
+.layout, .layout-column, .layout-row {
+    box-sizing: border-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+}
+.flex {
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    box-sizing: border-box;
+}
+
+
+
+.live-editor {
+    margin: 0;
+    width: 100%;
+    min-height: 100%;
+    height: 100%;
+    
+    display: flex;
+}
+
+.firepad {
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    box-sizing: border-box;
+}
+
+#userlist {
+    
+}
+#firepad-container {
+    margin: 0;
+    width: 100%;
+    min-height: 100%;
+    height: 100%;
+}
+#md-preview {
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    box-sizing: border-box;
+    border-left: 1px solid black;
+}
+.plugins {
+    position: absolute;
+    top: 0;
+	right: 20px;
+	margin: 5px;
+	z-index: 50;
+}
+
+@media only screen and (max-width: 599px) and (min-width: 0) {
+    #md-preview {
+        display: none;
+    }
+}
+
+/*html {
 	height: 100%;
 }
 
@@ -37,8 +117,6 @@ body {
 .preview-only .firepad {
 	display: none;
 }
-/* Height / width / positioning can be customized for your use case.
-	For demo purposes, we make firepad fill the entire browser. */
 
 .firepad {
 	width: 50%;
@@ -232,10 +310,10 @@ body {
 	-ms-transform: rotate(-720deg);
 	transform: rotate(-720deg)
 	}
-}
+}*/
 
 /*Prettyprint*/
-
+/*
 li.L0,
 li.L1,
 li.L2,
@@ -245,9 +323,9 @@ li.L6,
 li.L7,
 li.L8 {
 	list-style-type: decimal !important;
-}
+}*/
 /* Docs page*/
-
+/*
 #md-preview img {
 	display: block;
 	margin-top: 25px;
@@ -288,4 +366,4 @@ li.L8 {
 	right: 20px;
 	margin: 5px;
 	z-index: 50;
-}
+}*/
