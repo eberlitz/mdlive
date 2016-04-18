@@ -51,6 +51,7 @@ body {
 }
 
 #md-preview {
+	box-sizing: border-box;
 	width: 48%;
 	height: 100%;
 	float: right;
