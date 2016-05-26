@@ -17,7 +17,14 @@
 	<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.1.3/ace.js"></script>-->
 
 	<script src="bower_components/marked/lib/marked.js"></script>
-	<link href="bower_components/google-code-prettify/bin/prettify.min.css" rel="stylesheet" />
+	<!--<link href="bower_components/google-code-prettify/bin/prettify.min.css" rel="stylesheet" />-->
+	<!--<script src="bower_components/google-code-prettify/bin/prettify.min.js"></script>-->
+	
+	<link href="bower_components/highlightjs/styles/atelier-cave-light.css" rel="stylesheet" />
+	<script src="bower_components/highlightjs/highlight.pack.min.js"></script>
+	
+	<!--<link href="bower_components/color-themes-for-google-code-prettify/themes/atelier-cave-light.css" rel="stylesheet" />-->
+	
 
 	<!-- Firepad -->
 	<link rel="stylesheet" href="bower_components/firepad/dist/firepad.css" />
@@ -25,6 +32,7 @@
 
 
 	<link rel="stylesheet" href="mdlive.css" />
+	<link rel="stylesheet" href="preview.css" />
 
 </head>
 
@@ -39,7 +47,7 @@
 	<div class="live-editor">
 		<div id="userlist"></div>
 		<div id="firepad-container"></div>
-		<div id="md-preview"></div>
+		<div id="md-preview" class="doc-preview"></div>
 		<div class="plugins">
 			<!--<button id="btnSlides">Slides</button>-->
 			<button id="btnPreview">Preview</button>

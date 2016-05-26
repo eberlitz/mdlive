@@ -78,25 +78,14 @@ function removeSplashScreen() {
 var updateMarkdown = function (mdtext) {
     var mdText = '\n[TOC]\n\n' + mdtext;
     var md = document.getElementById('md-preview');
-    //var converter = new Markdown.Converter();
-    //md.innerHTML = converter.makeHtml(mdText);
-
     // Synchronous highlighting with highlight.js
     marked.setOptions({
         highlight: function (code, lang, callback) {
-            return prettyPrintOne(code, lang, 1);
+            return hljs.highlightAuto(code,[lang]).value;
+            //return prettyPrintOne(code, lang, 1);
         }
     });
     md.innerHTML = marked(mdText);
-
-    // Prettify
-    // var codeEls = document.getElementsByTagName('code');
-    // for (var i=0, ii=codeEls.length; i<ii; i++) {
-    //   var codeEl = codeEls[i];
-    //   var lang = codeEl.className;
-    //   codeEl.className = 'prettyprint lang-' + lang;
-    // }
-    //prettyPrint();
 
     // Style tables
     var tableEls = document.getElementsByTagName('table');
