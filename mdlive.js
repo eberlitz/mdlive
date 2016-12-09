@@ -81,7 +81,7 @@ var updateMarkdown = function (mdtext) {
     // Synchronous highlighting with highlight.js
     marked.setOptions({
         highlight: function (code, lang, callback) {
-            return hljs.highlightAuto(code,[lang]).value;
+            return hljs.highlightAuto(code, [lang]).value;
             //return prettyPrintOne(code, lang, 1);
         }
     });
@@ -116,6 +116,7 @@ function syncScroll() {
 
 function loadApp(ref, authData) {
     configureMarked();
+    var rootRef = ref;
     ref = getDocRef(ref);
 
     //// Create ACE
@@ -129,12 +130,31 @@ function loadApp(ref, authData) {
     session.setUseWorker(false);
     session.setMode("ace/mode/markdown");
     document.getElementById('firepad-container').style.fontSize = '16px';
-    
+
+
+
+    var rollbackBtn = document.getElementById('btnRollback');
+
+    rollbackBtn.addEventListener('click', function () {
+        var result = prompt('Enter the number of revisions to load', 10);
+        if (result) {
+            var nbr = parseInt(result, 10);
+            let name = ref.key();
+            debugger;
+            var newLocation = rootRef.child(name + '-rollback' );
+            rootRef.child(name).child('history').limitToFirst(nbr).on("value", function (snapshot) {
+                    newLocation.child('history').set(snapshot.val());
+                    alert('ok')
+            });
+        }
+    });
+
+
     //// Create Firepad.
     var firepad = Firepad.fromACE(ref, editor, {
         userId: userId
     });
-    
+
     //// Initialize contents.
     firepad.on('ready', function () {
         syncScroll();
