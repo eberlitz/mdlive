@@ -95,7 +95,7 @@ var updateMarkdown = function (mdtext) {
     }
 
     TocMaker && TocMaker.init('md-preview'/*,"http://localhost/md-preview/"*/); //TOC MAKER
-
+    MathJax && MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
 };
 
 function syncScroll() {
@@ -135,7 +135,7 @@ function loadApp(ref, authData) {
 
     var rollbackBtn = document.getElementById('btnRollback');
 
-    rollbackBtn.addEventListener('click', function () {
+    rollbackBtn && rollbackBtn.addEventListener('click', function () {
         var result = prompt('Enter the number of revisions to load', 10);
         if (result) {
             var nbr = parseInt(result, 10);

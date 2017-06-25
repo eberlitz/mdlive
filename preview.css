@@ -1,4 +1,4 @@
-.doc-preview {
+/*.doc-preview {
     font-size: 12px
 }
 @media (max-width: 480px) {
@@ -157,15 +157,6 @@ only screen and (min-resolution: 192dpi) {
 
 
 .doc-preview pre{
-    /*border: 1px solid #d5d5e9;
-    background-color: #eef;
-    padding: 8px 12px;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    border-radius: 3px;
-    font-size: 13px;
-    overflow: auto;
-    word-wrap: break-word;*/
      background: #efecf4;
   color: #8b8792;
   font-family: Menlo, Consolas, "Bitstream Vera Sans Mono", "DejaVu Sans Mono", Monaco, monospace;
@@ -173,5 +164,4 @@ only screen and (min-resolution: 192dpi) {
   line-height: 1.5;
   border: 1px solid #e2dfe7;
   padding: 10px;
-  /* border-radius: 3px; */
-}
+}*/

@@ -34,6 +34,23 @@
 	<link rel="stylesheet" href="mdlive.css" />
 	<link rel="stylesheet" href="preview.css" />
 
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+	tex2jax: {
+		processEscapes: true,
+		inlineMath: [
+		  	['$','$'], 
+			['\\(','\\)']
+		],
+		skipStartupTypeset:true,
+		processClass: "mathjax",
+    	ignoreClass: "no-mathjax"
+	}
+});
+</script>
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
 </head>
 
 <body>
@@ -46,12 +63,12 @@
 	</div>
 	<div class="live-editor">
 		<div id="userlist"></div>
-		<div id="firepad-container"></div>
-		<div id="md-preview" class="doc-preview"></div>
+		<div id="firepad-container" class="no-mathjax"></div>
+		<div id="md-preview" class="post post-content wrap doc-preview exec-math mathjax"></div>
 		<div class="plugins">
 			<!--<button id="btnSlides">Slides</button>-->
 			<button id="btnPreview">Preview</button>
-			<button id="btnRollback">rollback to</button>
+			<!--<button id="btnRollback">rollback to</button>-->
 		</div>
 	</div>
 	<script type="text/javascript" src="tocmaker.js"></script>
