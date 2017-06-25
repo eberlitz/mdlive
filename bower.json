@@ -18,6 +18,10 @@
     "firebase": "~2.2.9",
     "firepad": "~1.1.1",
     "marked": "~0.3.5",
+<<<<<<< HEAD
     "highlightjs": "^9.8.0"
+=======
+    "highlightjs": "^9.4.0"
+>>>>>>> a9efe233f8ae88727aadc8bbd4df8ca801083489
   }
 }
